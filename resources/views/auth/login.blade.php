@@ -49,11 +49,7 @@
                         <div
                             class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
                             <div class="col-sm-8 col-md-6 col-xl-10">
-                                @if (session('error'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
+                               <x-alert/>
                                 <h2 class="mb-3 fs-7 fw-bolder">Sign in</h2>
                                 <p class=" mb-9">Your Admin Dashboard</p>
                                 <form action="{{ route('login') }}" method="post">

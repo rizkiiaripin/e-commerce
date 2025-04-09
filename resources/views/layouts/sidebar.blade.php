@@ -57,7 +57,7 @@
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a href="./chart-apex-area.html" class="sidebar-link">
+                    <a href="{{route('blogs')}}" class="sidebar-link @if(request()->is('blogs/*')) active @endif ">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
@@ -79,23 +79,31 @@
                   <span class="d-flex">
                     <i class="ti ti-topology-star-3"></i>
                   </span>
-                  <span class="hide-menu">Permission</span>
+                  <span class="hide-menu">Access Control</span>
                 </a>
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
-                    <a href="./chart-apex-line.html" class="sidebar-link">
+                    <a href="/users" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
-                      <span class="hide-menu">Role</span>
+                      <span class="hide-menu">Users</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a href="./chart-apex-area.html" class="sidebar-link">
+                    <a href="/roles" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
-                      <span class="hide-menu">Permission</span>
+                      <span class="hide-menu">Roles</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="/permissions" class="sidebar-link">
+                      <div class="round-16 d-flex align-items-center justify-content-center">
+                        <i class="ti ti-circle"></i>
+                      </div>
+                      <span class="hide-menu">Permissions</span>
                     </a>
                   </li>
                 </ul>

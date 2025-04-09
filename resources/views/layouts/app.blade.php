@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/png" href="{{asset('backend/dist/images/logos/favicon.ico')}}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{asset('backend/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css')}}">
-    
+    @stack('style')
     <!-- Core Css -->
     <link  id="themeColors"  rel="stylesheet" href="{{asset('backend/dist/css/style.min.css')}}" />
   </head>
@@ -509,5 +509,7 @@
     <script src="{{asset('backend/dist/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
     <script src="{{asset('backend/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
     <script src="{{asset('backend/dist/js/dashboard.js')}}"></script>
+    @stack('script')
+
   </body>
 </html>
