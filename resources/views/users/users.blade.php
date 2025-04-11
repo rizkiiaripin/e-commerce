@@ -8,51 +8,45 @@
 
             <div class="mb-2">
                 <div class="d-flex align-items-end flex-column mb-2">
-                    <a href="/roles/create" class="btn btn-primary" >
+                    <a href="/users/create" class="btn btn-primary" >
                         + Create
                     </a>
                 </div>
                 <div class="table-responsive m-t-40">
-                    <table id="config-table" class="table border display table-bordered overflow-x-auto">
+                    <table id="config-table" class="table border display table-bordered   overflow-x-auto">
                         <thead>
                             <!-- start row -->
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>User Email</th>
-                                <th>Permissions</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                             <!-- end row -->
                         </thead>
                         <tbody>
-                            @foreach($roles as $role)
+                            @foreach($users as $user)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    {{ $role->name }}
+                                    {{ $user->name }}
                                 </td>
-                                <td>
-                                @forelse($role->users as $user)
-                                    {{ $user->email }},
-                                @empty
-                                 -
-                                @endforelse
-                                </td>
-                            <td style="max-width: 80px;">
-                            @forelse($role->permissions as $permission)
-                            {{$permission->name}} ,
-                            @empty
-                            -
-                            @endforelse
+                          
+                                <td>{{ $user->email }}</td>
+                            
+                            <td>
+                            @foreach($user->roles as $role)
+                            {{$role->name}} 
+                            @endforeach
                             </td>
                                 
-                                <td class="no-wrap">
-                                    <a href="/roles/{{$role->id}}/edit"
+                                <td class="no-wrap"><a href="/users/{{$user->id}}/edit"
                                         class="btn btn-warning btn-sm waves-effect waves-light">
                                         <i class="ti ti-edit "></i>
                                     </a>
-                                    <form action="/roles/{{$role->id}}" method="POST" class="d-inline">
+                                    </button>
+                                    <form action="/users/{{$user->id}}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" onclick="deleteItem(event)"
@@ -78,9 +72,16 @@
         <script src="{{ asset('js/sweetalert.js') }}"></script>
         <!-- datatable -->
         <script src="{{ asset('backend') }}/dist/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="{{ asset('backend') }}/dist/js/datatable/datatable-basic.init.js"></script>
+        <script src="{{ asset('backend') }}/dist/js/datatable/datatable-basic.init.js"></script>       
     @endpush
     @push('style')
+    
+    <link rel="stylesheet" href="{{ asset('backend') }}/dist/libs/prismjs/themes/prism-okaidia.min.css">
+
+        <!-- --------------------------------------------------- -->
+        <!-- Select2 -->
+        <!-- --------------------------------------------------- -->
+        <link rel="stylesheet" href="{{ asset('backend') }}/dist/libs/select2/dist/css/select2.min.css">
     
         <!-- --------------------------------------------------- -->
         <!-- Datatable -->

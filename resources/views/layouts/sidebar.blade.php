@@ -74,6 +74,7 @@
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">SETTING</span>
               </li>
+              @role('admin')
               <li class="sidebar-item">
                 <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                   <span class="d-flex">
@@ -83,11 +84,11 @@
                 </a>
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
-                    <a href="/users" class="sidebar-link">
+                    <a href="/permissions" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
-                      <span class="hide-menu">Users</span>
+                      <span class="hide-menu">Permissions</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -99,31 +100,16 @@
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a href="/permissions" class="sidebar-link">
+                    <a href="{{ route('users')}}" class="sidebar-link">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                       </div>
-                      <span class="hide-menu">Permissions</span>
+                      <span class="hide-menu">Users</span>
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="./page-pricing.html" aria-expanded="false">
-                  <span>
-                    <i class="ti ti-currency-dollar"></i>
-                  </span>
-                  <span class="hide-menu">Pricing</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="./page-faq.html" aria-expanded="false">
-                  <span>
-                    <i class="ti ti-help"></i>
-                  </span>
-                  <span class="hide-menu">FAQ</span>
-                </a>
-              </li>
+              @endrole
               
             </ul>
           </nav>

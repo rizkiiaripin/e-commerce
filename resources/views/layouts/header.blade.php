@@ -300,7 +300,7 @@
                       <h5 class="mb-1 fs-3">Mathew Anderson</h5>
                       <span class="mb-1 d-block text-dark">Designer</span>
                       <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                        <i class="ti ti-mail fs-4"></i> info@modernize.com
+                        <i class="ti ti-mail fs-4"></i> {{auth()->user()->email}}
                       </p>
                     </div>
                   </div>

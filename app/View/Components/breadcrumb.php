@@ -27,7 +27,7 @@ class breadcrumb extends Component
     public function render(): View|Closure|string
     {
         $segments = collect(request()->segments())->filter(function ($segment) {
-            return strlen($segment) < 50;
+            return !is_numeric($segment) && strlen($segment) < 50;
         })->toArray(); // Mengambil segment dari URL
 
         return view('components.breadcrumb', compact('segments'));

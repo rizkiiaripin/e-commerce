@@ -16,6 +16,7 @@
     <link rel="shortcut icon" type="image/png" href="{{asset('backend/dist/images/logos/favicon.ico')}}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{asset('backend/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css')}}">
+    @livewireStyles
     @stack('style')
     <!-- Core Css -->
     <link  id="themeColors"  rel="stylesheet" href="{{asset('backend/dist/css/style.min.css')}}" />
@@ -495,7 +496,7 @@
     </div>
   </div>
   <!--  Customizer -->
-    <!--  Import Js Files -->
+  <!--  Import Js Files -->
     <script src="{{asset('backend/dist/libs/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{asset('backend/dist/libs/simplebar/dist/simplebar.min.js')}}"></script>
     <script src="{{asset('backend/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
@@ -510,6 +511,7 @@
     <script src="{{asset('backend/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
     <script src="{{asset('backend/dist/js/dashboard.js')}}"></script>
     @stack('script')
-
+   
+  
   </body>
 </html>
