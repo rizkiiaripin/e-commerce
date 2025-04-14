@@ -47,6 +47,7 @@
                   </span>
                   <span class="hide-menu">Blogs</span>
                 </a>
+              
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
                     <a href="./chart-apex-line.html" class="sidebar-link">

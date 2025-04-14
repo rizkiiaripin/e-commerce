@@ -22,10 +22,12 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = $this->route('user')?->id;
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required',Password::default()],
+            'email' => 'required|email|unique:users,email'.($userId ? ",$userId": ''),
+            'current_password' => ['current_password','nullable'] ?? '',
+            'password' => ['nullable',Password::defaults(),],
         ];
     }
 }

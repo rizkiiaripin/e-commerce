@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\RoleRequest;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\Permission;
 use Illuminate\Routing\Controller;
 
 class RoleController extends Controller
 {
     public function __construct()
     {
-    $this->middleware('can:edit-user')->only('index');
+        $this->middleware('can:view-role')->only('index');
     }
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class RoleController extends Controller
     {
         $roles = Role::get();
         $permissions = Permission::get();
-        return view('roles.roles',['permissions' => $permissions,'roles' => $roles]);
+        return view('roles.roles', ['permissions' => $permissions, 'roles' => $roles]);
     }
 
     /**
@@ -28,7 +29,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-        return view('roles.create',['permissions' => $permissions]);
+        return view('roles.create', ['permissions' => $permissions]);
     }
 
     /**
@@ -39,7 +40,7 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->name]);
 
         $role->syncPermissions($request->permissions ?? []);
-    
+
         return redirect('/roles')->with('success', 'Role is created successfully');
     }
 
@@ -57,8 +58,8 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $role = Role::find($role->id);
-        $permissions = Permission::get();
-        return view('roles.edit',['role' => $role,'permissions' => $permissions]);
+        $permissions = Permission::with('children')->whereNull('parent_id')->get();
+        return view('roles.edit', ['role' => $role, 'permissions' => $permissions]);
     }
 
     /**
@@ -68,11 +69,10 @@ class RoleController extends Controller
     {
         $role->update([
             'name' => $request->name,
-        ]);    
+        ]);
         $role->syncPermissions($request->permissions ?? []);
         redirect('/roles')->with('success', 'Role is created successfully');
         return redirect('/roles')->with('success', 'Role is updated successfully');
-
     }
 
     /**
@@ -80,7 +80,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->delete();       
+        $role->delete();
         return redirect('/roles')->with('success', 'Role is deleted successfully');
     }
 }

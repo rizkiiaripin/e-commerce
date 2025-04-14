@@ -3,12 +3,13 @@
     <x-breadcrumb></x-breadcrumb>
     <x-alert></x-alert>
     <section class="datatables">
+    <section class="datatables">
         <div class="">
             <div class="card-body">
 
                 <div class="mb-2">
                     <div class="d-flex align-items-end flex-column mb-2">
-                        <a href="/roles/create" class="btn btn-primary">
+                        <a href="/permissions/create" class="btn btn-primary">
                             + Create
                         </a>
                     </div>
@@ -18,39 +19,23 @@
                                 <!-- start row -->
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>User Email</th>
                                     <th>Permissions</th>
                                     <th>Action</th>
                                 </tr>
                                 <!-- end row -->
                             </thead>
                             <tbody>
-                                @foreach ($roles as $role)
+                                @foreach ($permissions as $permission)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $role->name }}</td>
-                                        <td>
-                                            @forelse($role->users as $user)
-                                                {{ $user->email }},
-                                            @empty
-                                                -
-                                            @endforelse
-                                        </td>
-                                        <td style="max-width: 80px;">
-                                            @forelse($role->permissions as $permission)
-                                                {{ $permission->name }} ,
-                                            @empty
-                                                -
-                                            @endforelse
-                                        </td>
-
+                                        <td>{{ $permission->name }}</td>
+                                        
                                         <td class="no-wrap">
-                                            <a href="/roles/{{ $role->id }}/edit"
+                                            <a href="/permissions/{{ $permission->id }}/edit"
                                                 class="btn btn-warning btn-sm waves-effect waves-light">
                                                 <i class="ti ti-edit "></i>
                                             </a>
-                                            <form action="/roles/{{ $role->id }}" method="POST" class="d-inline">
+                                            <form action="/permissions/{{ $permission->id }}" method="POST" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" onclick="deleteItem(event)"
