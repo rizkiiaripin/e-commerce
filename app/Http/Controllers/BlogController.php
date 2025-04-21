@@ -4,15 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Yajra\DataTables\DataTables;
+// use Yajra\DataTables\DataTables;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('can:view-blog')->only('index');
+        // $this->middleware('can:create-blog')->only('create', 'store');
+        // $this->middleware('can:edit-blog')->only('edit', 'update');
+        // $this->middleware('can:delete-blog')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('blogs.blogs');
+        //give data to ajax
+        if (request()->ajax()) {
+            $blogs = Blog::get();
+            return response()->json([
+            'categories' => [['id' => 1,'name' => 'fruit'], ['id' => 2 ,'name' => 'red']],
+                'blogs' => $blogs,
+                'success' => true,
+                'message' => 'Data retrieved successfully',
+            ]);
+        }
+        return view('blogs.index');
     }
 
     /**
@@ -20,7 +40,10 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json([
+            'success' => true,
+            'message' => 'Data retrieved successfully',
+        ]);
     }
 
     /**
@@ -28,7 +51,24 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+        //     'image' => 'required|image|max:1024', // 1MB Max
+        //     'category_id' => 'required',  
+        //     'title' => 'required',  
+        //     'description' => 'required',  
+        // ]);
+        $imagePath = $request->image->store('images/blogs', 'public');
+        $blog = Blog::create([
+            'image' => $imagePath,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        return response()->json([
+            'message' => 'Blog created successfully',
+            'blog' => $blog,
+        ]);
     }
 
     /**
@@ -44,7 +84,13 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        $blog = Blog::find($blog->id);
+        return response()->json([
+            'categories' => [['id' => 1,'name' => 'fruit'], ['id' => 2 ,'name' => 'red']],
+            'blogs' => $blog,
+            'success' => true,
+            'message' => 'Data retrieved successfully',
+        ]);
     }
 
     /**

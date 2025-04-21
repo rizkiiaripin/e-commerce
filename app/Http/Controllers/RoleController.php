@@ -11,7 +11,7 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:view-role')->only('index');
+        // $this->middleware('can:view-role')->only('index');
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class RoleController extends Controller
     {
         $roles = Role::get();
         $permissions = Permission::get();
-        return view('roles.roles', ['permissions' => $permissions, 'roles' => $roles]);
+        return view('roles.index', ['permissions' => $permissions, 'roles' => $roles]);
     }
 
     /**
@@ -28,7 +28,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::with('children')->get();
         return view('roles.create', ['permissions' => $permissions]);
     }
 

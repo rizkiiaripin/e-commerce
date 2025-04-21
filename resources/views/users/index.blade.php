@@ -18,7 +18,7 @@
                             <!-- start row -->
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>Username</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Action</th>
@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    {{ $user->name }}
+                                    {{ $user->username }}
                                 </td>
                           
                                 <td>{{ $user->email }}</td>

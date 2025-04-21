@@ -6,35 +6,10 @@
 
         <form action="/users" method="POST">
             @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                    value="{{ old('name') }}" required>
-                @error('name')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                    value="{{ old('email') }}" required>
-                @error('email')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
-                <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
-                        id="password" placeholder="please enter password" required>
-                    <span class="input-group-text" onclick="togglePassword()">
-                        <i class="fa fa-eye" id="togglePassword"></i>
-                    </span>
-                </div>
-                @error('password')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
+            <x-form.input name="name" placeholder="name" label="Name" />
+            <x-form.input name="username" placeholder="username" label="Username" />
+            <x-form.input name="email" type="email" placeholder="email" label="Email" />
+            <x-form.input name="password" type="password" placeholder="password" label="Password" />
             <div class="mb-3">
                 <label class="form-label mb-1">Role</label>
                 <select class="form-control select2" name="role" id="select-category" style="width: 100%;" required>

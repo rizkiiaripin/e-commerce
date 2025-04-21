@@ -22,7 +22,7 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="permission" class="form-label">Sub Permission Name</label>
+                        <label for="permission" class="form-label">Permission Name</label>
                         <div class="d-flex gap-2">
                             <input type="name" name="sub_permissions[]"
                                 class="form-control  @error('name') is-invalid @enderror" id="permission"

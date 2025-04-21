@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PermissionRequest;
 use App\Models\Permission;
 
 class PermissionController extends Controller
@@ -13,7 +14,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::latest()->get();
-        return view('permissions.permissions', compact('permissions'));
+        return view('permissions.index', compact('permissions'));
     }
 
     /**
@@ -22,22 +23,16 @@ class PermissionController extends Controller
     public function create()
     {
         $permissions = Permission::with('children')
-        ->whereNull('parent_id') // hanya ambil parent
-        ->get();
-        return view('permissions.create',compact('permissions'));
+            ->whereNull('parent_id') // hanya ambil parent
+            ->get();
+        return view('permissions.create', compact('permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        $request->validate([
-            'parent_name' => 'required|unique:permissions,name',
-            'sub_permissions' => 'required|array',
-            'sub_permissions.*' => 'required|string|distinct'
-        ]);
-
         // 1. Buat parent permission
         $parent = Permission::create([
             'name' => $request->parent_name,
@@ -52,7 +47,7 @@ class PermissionController extends Controller
             ]);
         }
 
-        return redirect('/permissions')->with('success', 'Parent Permission & Sub Permission is created successfully');
+        return redirect('/permissions')->with('success', 'Parent Permission & Permission is created successfully');
     }
 
     /**
@@ -75,17 +70,14 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PermissionRequest $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|unique:permissions,name',
-        ]);
-        Permission::update([
-            'name' => $request->name,
-        ]);
-        Permission::updated(['name' => $request->name]);
 
-
+        //update parent permission
+        $permission = Permission::find($id);
+        $permission->update([
+            'name' => $request->permission_name,
+        ]);
         return redirect('/permissions')->with('success', 'Permission is updated successfully');
     }
 
@@ -94,6 +86,17 @@ class PermissionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // 1. Hapus semua sub permission
+        $subPermissions = Permission::where('parent_id', $id)->get();
+        foreach ($subPermissions as $subPermission) {
+            $subPermission->delete();
+        }
+        // 2. Hapus parent permission
+        $permission = Permission::find($id);
+        if (!$permission) {
+            return redirect('/permissions')->with('error', 'Permission not found');
+        }
+        $permission->delete();
+        return redirect('/permissions')->with('success', 'Permission is deleted successfully');
     }
 }

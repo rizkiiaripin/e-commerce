@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::get();
-        return view('users.users', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -41,6 +41,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->username,
             'password' => $request->password,
         ]);
         $user->assignRole($request->role);

@@ -26,9 +26,13 @@ class breadcrumb extends Component
      */
     public function render(): View|Closure|string
     {
-        $segments = collect(request()->segments())->filter(function ($segment) {
-            return !is_numeric($segment) && strlen($segment) < 50;
-        })->toArray(); // Mengambil segment dari URL
+        $segments = collect(request()->segments()) ->reject(function ($segment, $key) {
+            // Buang segment kalau:
+            return in_array($segment, ['create', 'edit']) === false // kecuali create/edit
+                && $key > 0 // abaikan segment pertama (biasanya resource utama)
+                && is_numeric($segment); // dan kalau bukan ID
+        })->values()->toArray(); // Mengambil segment dari URL
+        
 
         return view('components.breadcrumb', compact('segments'));
     }

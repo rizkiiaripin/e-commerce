@@ -55,8 +55,8 @@
                                 <form action="{{ route('login') }}" method="post">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email"
+                                        <label for="login" class="form-label">Email or Username</label>
+                                        <input type="text" class="form-control" name="login" id="login"
                                             aria-describedby="emailHelp" placeholder="Type your email..." required>
                                     </div>
                                     <div class="mb-4">

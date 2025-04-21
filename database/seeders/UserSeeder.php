@@ -19,12 +19,14 @@ class UserSeeder extends Seeder
             'name' => 'rizki',
             'email' => 'admin@gmail.com',
             'password' => '12345678',
+            'username' => 'rizki',
         ]);   
         $admin->assignRole('admin');
         $admin = User::factory()->create([
             'name' => 'penulis',
             'email' => 'penulis@gmail.com',
             'password' => '12345678',
+            'username' => 'penulis',
         ]);   
         $admin->assignRole('writer');
     }

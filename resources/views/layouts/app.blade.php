@@ -10,6 +10,7 @@
     <meta name="MobileOptimized" content="width" />
     <meta name="description" content="Mordenize" />
     <meta name="author" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
@@ -42,7 +43,7 @@
       @include('layouts.header')
         
         <!--  Header End -->
-        <div class="container-fluid">
+        <div class="container-fluid mw-100">
           <!--  Owl carousel -->
          @yield('content')
         </div>
@@ -508,7 +509,6 @@
     <script src="{{asset('backend/dist/js/custom.js')}}"></script>
     <!--  current page js files -->
     <script src="{{asset('backend/dist/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('backend/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
     <script src="{{asset('backend/dist/js/dashboard.js')}}"></script>
     @stack('script')
    

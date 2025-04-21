@@ -34,7 +34,3 @@ function Decision(event) {
       }
 });
 }
- //5 detik notifikasi hilang
- setTimeout(function() {
-    document.getElementById('alert').style.display = 'none';
-}, 4500);

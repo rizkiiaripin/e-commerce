@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class PermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +21,11 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = $this->route('user')?->id;
         return [
-            'name' => 'required',
-            'username' => 'required|unique:users,username'.($userId ? ",$userId": ''),
-            'email' => 'required|email|unique:users,email'.($userId ? ",$userId": ''),
-            'current_password' => ['current_password','nullable'] ?? '',
-            'password' => ['nullable',Password::defaults(),],
+            'parent_name' => 'unique:permissions,name|nullable',
+            'sub_permissions' => 'array|nullable',
+            'sub_permissions.*' => 'string|distinct|nullable',
+            'permission_name' => 'string|nullable',
         ];
     }
-}
+}   

@@ -19,6 +19,12 @@
 
             <div class="mb-3">
                 <label class="form-label">Permissions</label>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="select-all">
+                    <label for="select-all" class="form-check-label fw-bold">Select All</label>
+                </div>
+
                 <div class="row">
                     @foreach ($permissions as $permission)
                         <label class="card-title fs-3 mb-1">{{ $permission->name }}</label>
@@ -27,13 +33,15 @@
                             <div class="col-md-2 mb-2">
                                 <div class="form-check">
                                     <input type="checkbox" name="permissions[]" value="{{ $child->name }}"
-                                        class="form-check-input"
+                                        class="form-check-input permission-checkbox" 
                                         {{ $role->hasPermissionTo($child->name) ? 'checked' : '' }}>
                                     <label class="form-check-label">{{ $child->name }}</label>
                                 </div>
                             </div>
-                            @empty
-                            -
+                        @empty
+                            <div class="col-md-2 mb-2">
+                                -
+                            </div>
                         @endforelse
                     @endforeach
                 </div>
@@ -47,3 +55,26 @@
         </form>
     </div>
 @endsection
+
+@push('script')
+<script>
+    $('document').ready(function() {
+        // Select all checkboxes when the "Select All" checkbox is checked
+        $('.permission-checkbox').each(function() {
+            if (this.checked) {
+                $('#select-all').prop('checked', true);
+            }
+        });
+        $('#select-all').change(function() {
+            $('.permission-checkbox').prop('checked', this.checked);
+        });
+
+        // Uncheck "Select All" if any individual checkbox is unchecked
+        $('.permission-checkbox').change(function() {
+            if (!this.checked) {
+                $('#select-all').prop('checked', false);
+            }
+        });
+    });
+</script>
+@endpush
