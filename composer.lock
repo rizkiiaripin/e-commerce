@@ -4,8 +4,83 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e09785b7aeee0600a5d11cc72be5b808",
+    "content-hash": "d6c91c4ebdc40a4933a4b45e0ed3bc38",
     "packages": [
+        {
+            "name": "binafy/laravel-stub",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/binafy/laravel-stub.git",
+                "reference": "811e9e8a975ecf9099b309f1993e9cb270b4e70a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/binafy/laravel-stub/zipball/811e9e8a975ecf9099b309f1993e9cb270b4e70a",
+                "reference": "811e9e8a975ecf9099b309f1993e9cb270b4e70a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "8.*|9.*|10.*",
+                "pestphp/pest-plugin-laravel": "1.*|2.*|3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Binafy\\LaravelStub\\Providers\\LaravelStubServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Binafy\\LaravelStub\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milwad Khosravi",
+                    "email": "milwad.dev@gmail.com",
+                    "homepage": "https://github.com/milwad-dev",
+                    "role": "author"
+                },
+                {
+                    "name": "binafy",
+                    "homepage": "https://github.com/binafy",
+                    "role": "owner"
+                }
+            ],
+            "description": "Generate stub files easy",
+            "homepage": "https://github.com/binafy/laravel-stub",
+            "keywords": [
+                "binafy",
+                "filesystem",
+                "framework",
+                "generate stub",
+                "laravel",
+                "laravel package",
+                "laravel stub",
+                "laravel stub binafy",
+                "laravel stub generator",
+                "laravel stub package",
+                "laravel-stub",
+                "milwad",
+                "stub"
+            ],
+            "support": {
+                "issues": "https://github.com/binafy/laravel-stub/issues",
+                "source": "https://github.com/binafy/laravel-stub/tree/v1.1.0"
+            },
+            "time": "2025-03-01T06:22:18+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.3",

@@ -36,9 +36,9 @@
                                                 </video>
                                             </td>
                                             <td>{{ $video->title }}</td>
-                                            <td>{{ $video->description }}</td>
+                                            <td class="">{{ $video->description }}</td>
 
-                                            <td class="no-wrap">
+                                            <td class="text-nowrap">
                                                 <a href="/videos/{{ $video->slug }}/edit"
                                                     class="btn btn-warning btn-sm waves-effect waves-light">
                                                     <i class="ti ti-edit "></i>
