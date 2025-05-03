@@ -4,18 +4,9 @@
     <x-breadcrumb></x-breadcrumb>
     <div class="container">
 
-        <form action="/roles" method="POST">
+        <form action="{{ route('roles.store') }}" method="POST">
             @csrf
-
-            <div class="mb-3">
-                <label for="name" class="form-label">Role Name</label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                    value="{{ old('name') }}" required>
-                @error('name')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-
+            <x-form.input name="name" placeholder="role name" label="Role Name" />
             <div class="mb-3">
                 <label class="form-label">Permissions</label>
                 <div class="row">
@@ -45,7 +36,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Create Role</button>
-            <a href="/roles" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('roles.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 @endsection

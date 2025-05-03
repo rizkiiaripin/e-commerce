@@ -9,7 +9,7 @@
 
                 <div class="mb-2">
                     <div class="d-flex align-items-end flex-column mb-2">
-                        <a href="/permissions/create" class="btn btn-primary">
+                        <a href="{{ route('permissions.create') }}" class="btn btn-primary">
                             + Create
                         </a>
                     </div>
@@ -31,11 +31,11 @@
                                         <td>{{ $permission->name }}</td>
                                         
                                         <td class="no-wrap">
-                                            <a href="/permissions/{{ $permission->id }}/edit"
+                                            <a href="{{ route('permissions.edit', $permission->id) }}"
                                                 class="btn btn-warning btn-sm waves-effect waves-light">
                                                 <i class="ti ti-edit "></i>
                                             </a>
-                                            <form action="/permissions/{{ $permission->id }}" method="POST" class="d-inline">
+                                            <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" onclick="deleteItem(event)"

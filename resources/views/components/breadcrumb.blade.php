@@ -4,7 +4,6 @@
             <div class="col-9">
                 <h4 class="fw-semibold mb-8 text-capitalize">{{ $currentUrl }}</h4>
                 <nav aria-label="breadcrumb" class="breadcrumb">
-                    <li class="breadcrumb-item active"><a  href="/" class="">Dashboard</a></li>
                     @foreach ($segments as $index => $segment)
                         <li class="breadcrumb-item {{ $loop->last ? 'active' : '' }}">
                             @if (!$loop->last)

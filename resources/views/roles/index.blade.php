@@ -8,7 +8,7 @@
 
                 <div class="mb-2">
                     <div class="d-flex align-items-end flex-column mb-2">
-                        <a href="/roles/create" class="btn btn-primary">
+                        <a href="{{ route('roles.create') }}" class="btn btn-primary">
                             + Create
                         </a>
                     </div>
@@ -46,11 +46,11 @@
                                         </td>
 
                                         <td class="no-wrap">
-                                            <a href="/roles/{{ $role->id }}/edit"
+                                            <a href="{{ route('roles.edit', $role->id) }}"
                                                 class="btn btn-warning btn-sm waves-effect waves-light">
                                                 <i class="ti ti-edit "></i>
                                             </a>
-                                            <form action="/roles/{{ $role->id }}" method="POST" class="d-inline">
+                                            <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" onclick="deleteItem(event)"

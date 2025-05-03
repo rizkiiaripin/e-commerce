@@ -4,7 +4,7 @@
     <x-breadcrumb></x-breadcrumb>
     <div class="container">
 
-        <form action="/roles/{{ $role->id }}" method="POST">
+        <form action="{{ route('roles.store', $role->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -16,7 +16,7 @@
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
-
+            <x-form-input></x-form-input>
             <div class="mb-3">
                 <label class="form-label">Permissions</label>
 

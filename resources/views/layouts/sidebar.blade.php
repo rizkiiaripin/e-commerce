@@ -27,7 +27,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="@if (request()->is('/')) active @endif sidebar-link" href="/"
+                    <a class="@if (request()->is('/')) active @endif sidebar-link" href="{{ route('dashboard') }}"
                         aria-expanded="false">
                         <span>
                             <i class="ti ti-aperture"></i>
@@ -44,7 +44,7 @@
                     <span class="hide-menu">Data Master</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="@if (request()->is('videos','videos/*')) active @endif sidebar-link" href="/videos"
+                    <a class="@if (request()->is('videos','videos/*')) active @endif sidebar-link" href="{{ route('videos.index') }}"
                         aria-expanded="false">
                         <span>
                             <i class="ti ti-device-tv"></i>
@@ -52,15 +52,15 @@
                         <span class="hide-menu">videos</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a  class="@if (request()->is('/galleries/*')) active @endif sidebar-link" href="/galleries"
+                {{-- <li class="sidebar-item">
+                    <a  class="@if (request()->is('/galleries/*')) active @endif sidebar-link" href="{{ route('galleries.index') }}"
                         aria-expanded="false">
                         <span>
                             <i class="ti ti-photo"></i>
                         </span>
                         <span class="hide-menu">Galleries</span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                         <span class="d-flex">
@@ -107,7 +107,7 @@
                         </a>
                         <ul aria-expanded="false" class="collapse first-level">
                             <li class="sidebar-item">
-                                <a href="/permissions" class="sidebar-link">
+                                <a href="{{ route('permissions.index') }}" class="sidebar-link">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
@@ -115,7 +115,7 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="/roles" class="sidebar-link">
+                                <a href="{{ route('roles.index') }}" class="sidebar-link">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>
@@ -123,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="{{ route('users') }}" class="sidebar-link">
+                                <a href="{{ route('users.index') }}" class="sidebar-link">
                                     <div class="round-16 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-circle"></i>
                                     </div>

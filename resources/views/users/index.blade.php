@@ -8,7 +8,7 @@
 
             <div class="mb-2">
                 <div class="d-flex align-items-end flex-column mb-2">
-                    <a href="/users/create" class="btn btn-primary" >
+                    <a href="{{ route('users.create') }}" class="btn btn-primary" >
                         + Create
                     </a>
                 </div>
@@ -41,12 +41,12 @@
                             @endforeach
                             </td>
                                 
-                                <td class="no-wrap"><a href="/users/{{$user->id}}/edit"
+                                <td class="no-wrap"><a href="{{ route('users.edit',$role->id) }}"
                                         class="btn btn-warning btn-sm waves-effect waves-light">
                                         <i class="ti ti-edit "></i>
                                     </a>
                                     </button>
-                                    <form action="/users/{{$user->id}}" method="POST" class="d-inline">
+                                    <form action="{{ route('users.destroy',$role->id) }}" method="POST" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" onclick="deleteItem(event)"

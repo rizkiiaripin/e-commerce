@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PermissionRequest;
+use App\Http\Requests\StorePermissionRequest;
+use App\Http\Requests\UpdatePermissionRequest;
 use App\Models\Permission;
 
 class PermissionController extends Controller
@@ -31,7 +32,7 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PermissionRequest $request)
+    public function store(StorePermissionRequest $request)
     {
         // 1. Buat parent permission
         $parent = Permission::create([
@@ -70,15 +71,16 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PermissionRequest $request, string $id)
+    public function update(UpdatePermissionRequest $request, string $id)
     {
 
         //update parent permission
         $permission = Permission::find($id);
-        $permission->update([
+        // 1. Buat parent permission
+         $permission->update([
             'name' => $request->permission_name,
         ]);
-        return redirect('/permissions')->with('success', 'Permission is updated successfully');
+        return redirect('dashboard/permissions')->with('success', 'Permission is updated successfully');
     }
 
     /**

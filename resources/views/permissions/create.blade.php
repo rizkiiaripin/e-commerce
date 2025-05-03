@@ -4,7 +4,7 @@
     <x-breadcrumb></x-breadcrumb>
     <div class="container">
 
-        <form action="/permissions" method="POST">
+        <form action="{{ route('permissions.store') }}" method="POST">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -47,7 +47,7 @@
             <div id="education_fields" class="mb-3"></div>
 
             <button type="submit" class="btn btn-primary">Create Permission</button>
-            <a href="/permissions" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('permissions.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 @endsection

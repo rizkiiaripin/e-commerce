@@ -4,7 +4,7 @@
     <x-breadcrumb></x-breadcrumb>
     <div class="container">
 
-        <form action="/users" method="POST">
+        <form action="{{ route('users.store') }}" method="POST">
             @csrf
             <x-form.input name="name" placeholder="name" label="Name" />
             <x-form.input name="username" placeholder="username" label="Username" />
@@ -23,7 +23,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
-            <a href="/users" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 @endsection
