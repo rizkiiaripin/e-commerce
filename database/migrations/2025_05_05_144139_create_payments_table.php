@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PaymentStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->decimal('amount',12 , 2);
             $table->string('method');
-            $table->string('status');
+            $table->string('status')->default(PaymentStatus::Pending);
             $table->timestamps();
         });
     }
