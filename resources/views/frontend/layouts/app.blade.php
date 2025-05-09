@@ -13,7 +13,8 @@
 
 <body>
     @include('frontend.layouts.header')
-    @section('content')
+    <x-frontend.slider />
+    <x-frontend.product />
     @include('frontend.layouts.bottom-bar')
     @stack('script')
 </body>
